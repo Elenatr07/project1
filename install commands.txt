@@ -1,0 +1,21 @@
+1)
+npm init -y 
+//инициализация проекта
+
+2)
+npm i webpack webpack-cli webpack-dev-server -D
+//сборщик и автосборщик
+
+3) 
+npm i @babel/core @babel/preset-env babel-loader -D
+//"переводчик"
+
+4) //CSS / HTML
+npm i html-webpack-plugin mini-css-extract-plugin css-loader -D
+
+5) //React
+npm i react react-dom
+npm i @babel/preset-react @babel/plugin-proposal-class-properties -D
+
+6) //additional
+npm i jquery bootstrap popper.js
