@@ -36,8 +36,16 @@ export default class MessageField extends Component {
         }
     };
 
-    componentDidUpdade() {
-        if (!this.state.answered) this.sendMessage('Отстань', 'Bot');
+    componentDidUpdate() {
+        // setTimeout(() => {
+        // this.sendMessage();
+
+        //     if (!this.state.answered) { 
+
+        //     }
+        // }, 500);
+        // }
+        if (!this.state.answered) this.sendMessage('I am bot what can I help you?');
     }
     render() {
         let { messages } = this.state;
