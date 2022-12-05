@@ -5,16 +5,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Router from './router.jsx';
 
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import initStore from './store/store.js';
 
 const appContainer = document.querySelector('#app');
 
 
 ReactDom.render(
-    <BrowserRouter>
-        <div className="h-100">
-            <Router />
-        </div>
-    </BrowserRouter>,
+    <Provider store={initStore()}>
+        <BrowserRouter>
+            <div className="h-100">
+                <Router />
+            </div>
+        </BrowserRouter>
+    </Provider>,
     appContainer
 )
 // let names = ['Vova', 'Dasha', 'Masha', 'Kolya'];
