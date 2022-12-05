@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Message from "../Message/Message.jsx";
+import React, { Component } from 'react';
+import Message from '../Message/Message.jsx';
 
 export default class MessageField extends Component {
     state = {
         messages: [
-            { sender: 'Bot', text: 'Hello' },
-            { sender: 'Bot', text: 'How a you?' },
+            {sender: 'Bot', text: 'Hello'},
+            {sender: 'Bot', text: 'How a u?'},
         ],
         text: '',
         answered: true
@@ -13,6 +13,10 @@ export default class MessageField extends Component {
 
     handleSend = () => {
         let { text } = this.state;
+        // this.setState({ messages: [ ...this.state.messages, 'Нормально' ] });
+        // let s = sender ? sender : 'Bot';
+        // let t = text ? text : 'Отстань!';
+
         this.sendMessage(text, 'Me');
     };
 
@@ -21,7 +25,8 @@ export default class MessageField extends Component {
         this.setState(
             { messages: [...messages, { text, sender }], text: '' }
         );
-        if (sender == 'Me') {
+
+        if (sender == 'Me') { 
             this.setState({ answered: false });
         } else {
             this.setState({ answered: true });
@@ -37,18 +42,33 @@ export default class MessageField extends Component {
     };
 
     componentDidUpdate() {
-        if (!this.state.answered) this.sendMessage('I am bot what can I help you?');
+        // setTimeout(() => {
+            // this.sendMessage();
+            
+        //     if (!this.state.answered) { 
+                
+        //     }
+        // }, 500);
+        // }
+        if (!this.state.answered) this.sendMessage('Отстань', 'Bot');
     }
+
     render() {
         let { messages } = this.state;
-        let messageElement = messages.map((message, index) => (
-            <Message key={index} text={message.text} />
-        ));
-        return <div>
-            {messageElement}
-            <input
-                type="text" onChange={this.handleChange} />
-            <button onClick={this.handleSend}>Send the message</button>
-        </div>
+        let messageElements = messages.map((message, index) => (
+                <Message key={ index } text={ message.text } />
+           )
+        );
+
+        return  <div>
+                    { messageElements }
+                    <input 
+                        type = "text" 
+                        onChange = { this.handleChange }
+                    />
+                    <button 
+                        onClick={ this.handleSend }
+                    >Отправить сообщение</button>
+                </div>
     }
 }

@@ -1,8 +1,9 @@
-import React from "react";
+import React from 'react';
 import ReactDom from 'react-dom';
-import bootstrap from 'bootstrap'
+import bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Router from "./router.jsx";
+import Router from './router.jsx';
+
 import { BrowserRouter } from 'react-router-dom';
 
 const appContainer = document.querySelector('#app');
@@ -16,27 +17,45 @@ ReactDom.render(
     </BrowserRouter>,
     appContainer
 )
+// let names = ['Vova', 'Dasha', 'Masha', 'Kolya'];
 
-//let arr = ['Jon', 'Stive', 'Ivan']
-//let domArry = arr.map((el, index) => <li key={'ol_id_' + index}>{el}</li>)
-//let objDTO = {
-//1: {
-//    value: 'One',
-//},
-//2: {
-//    value: 'Two',
-//},
-//3: {
-//     value: 'Three'
+// import TestContainer from './components/containers/container/container.jsx';
+
+// ReactDom.render(
+//     <div>
+//         <TestContainer names = { names }/>
+//     </div>,
+//     appContainer
+// )
+
+// let arr = ['Владимир', 'Путин', 'Молодец'];
+
+// let objDTO = {
+//     1: {
+//         value: 'Raz'
+//     },
+//     2: {
+//         value: 'Dva'
+//     },
+//     3: {
+//         value: 'Three'
+//     }
 // }
-//}
-//let domArryFromObject = Object.keys(objDTO).map((index) => <li key={'id_' + index}> {objDTO[index].value} number {index}</li>);
-//ReactDom.render(
-//    <div>
-//        <h1>Hello React</h1>
-//        <ol>{domArry}</ol>
-//        <ul>{domArryFromObject}</ul>
-//    </div>,
-//    appContainer
 
-//)
+// let domArrayFromArray = arr.map((el, index) => <li key={'ol1_id_' + index}>{ el }</li>) //arr.map returns [..., ...]
+// let domArrayFromObject = Object.keys(objDTO).map((index) => <li key={'ul1_id_' + index}>{ objDTO[index].value } number { index } </li>)
+//Object.keys(objDTO) >>> [1, 2, 3].map() >> [<li>{ objDTO[index].value } number { index } </li>]
+// let domArray = arr.map(function(gennadyPetrovich) {
+//     return <li> { gennadyPetrovich } </li>
+// }) //arr.map returns [..., ...]
+
+// let kusokKoda = <div>
+//                     <ol> { domArrayFromArray } </ol>
+//                     <hr/>
+//                     <ul>{ domArrayFromObject }</ul>
+//                 </div>
+
+// ReactDom.render(
+//     kusokKoda,
+//     appContainer
+// )
