@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCss = require('mini-css-extract-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
+
 module.exports = {
     entry: {
         //точка входа
@@ -14,7 +15,7 @@ module.exports = {
                 loader: 'babel-loader',
                 options: {
                     plugins: [
-                        ["@babel/plugin-proposal-class-properties", { "loose": true }]
+                        ["@babel/plugin-proposal-class-properties", {"loose": true}]
                     ]
                 }
             },
@@ -36,7 +37,7 @@ module.exports = {
     ],
     devServer: {
         port: 3000,
-        hot: true,
+        // hot: true,
         open: false
     }
 }
