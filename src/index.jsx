@@ -2,17 +2,18 @@ import React from "react";
 import ReactDom from 'react-dom';
 import bootstrap from 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Layout from "./components/Layout/Layout.jsx";
-
-
+import Router from "./router.jsx";
+import { BrowserRouter } from 'react-router-dom';
 
 const appContainer = document.querySelector('#app');
 
 
 ReactDom.render(
-    <div>
-        <Layout />
-    </div>,
+    <BrowserRouter>
+        <div className="h-100">
+            <Router />
+        </div>
+    </BrowserRouter>,
     appContainer
 )
 
