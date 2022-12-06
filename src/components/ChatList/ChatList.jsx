@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
 import { List, ListItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import SendRounded from '@material-ui/icons/SendRounded';
@@ -22,7 +21,7 @@ export default class ChatList extends Component {
                         >Chat Two <SendRounded /></ListItem>
                     </Link>
                 </List>
-                <Button variant="contained" color="primary">New chat</Button>
+
             </div>
 
         )
