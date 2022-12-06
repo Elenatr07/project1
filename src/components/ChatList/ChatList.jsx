@@ -13,13 +13,13 @@ export default class ChatList extends Component {
                     <Link to='/chat/1/'>
                         <ListItem
                             button={true}
-                        >Chat 1 <SendRounded /></ListItem>
+                        >Chat One <SendRounded /></ListItem>
                     </Link>
 
                     <Link to='/chat/2/'>
                         <ListItem
                             button={true}
-                        >Chat 2 <SendRounded /></ListItem>
+                        >Chat Two <SendRounded /></ListItem>
                     </Link>
                 </List>
                 <Button variant="contained" color="primary">New chat</Button>
