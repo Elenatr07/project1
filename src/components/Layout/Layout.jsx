@@ -16,11 +16,10 @@ export default class Layout extends Component {
     }
 
     render() {
-        let {chatId} = this.props;
-        // console.log(this.props);
+        let { chatId } = this.props;
         return (
             <div>
-                <Header chatId = { chatId }/>
+                <Header chatId={chatId} />
                 <div className="d-flex w-100 justify-content-between h-100">
                     <div className="w-25 p-5 border">
                         <ChatList />
