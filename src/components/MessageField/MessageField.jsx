@@ -3,50 +3,86 @@ import Message from '../Message/Message.jsx';
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
 import { sendMessage } from '../../store/actions/msg_action.js';
-import { Button } from '@material-ui/core'
+import { Button, Paper, IconButton, TextField } from '@material-ui/core';
+import SendIcon from '@material-ui/icons/SendRounded'
 
 
 class MessageField extends Component {
     state = {
-        text: '',
-        answered: true
+        input: '',
+        messages: []
     };
 
-    handleSend = () => {
-        let { text } = this.state;
-        let id = Object.keys(this.props.messages).length + 1;
-        this.props.sendMessage(id, 'Me', text);
+    handleSend = (value) => {
+        this.setState(state => ({
+            ...state,
+            messages: [...this.state.messages, { name: 'Me', text: value }]
+        }))
+        this.setState({ input: '' })
+
+        // let { text } = this.state;
+        // let id = Object.keys(this.props.messages).length + 1;
+        //this.props.sendMessage(id, 'Me', text);
     };
+
+    handleClick = (value) => {
+        if (this.state.input !== '') {
+            this.handleSend(value)
+        }
+    }
+
+    handleKeyUp = (evt) => {
+        if (this.state.input !== '') {
+            if (evt.reyCode === 13) {
+                this.handleSend(this.state.input)
+            }
+        }
+    }
 
     handleChange = evt => {
-        if (evt.keyCode != 13) {
-            this.setState({ text: evt.target.value });
-        } else {
-            this.handleSend();
-        }
+        this.setState({ input: evt.target.value });
+
     };
 
-    componentDidUpdate() {
-        if (!this.state.answered) this.sendMessage('I am BOT what can I help you?');
+    componentDidUpdate(prevProps, prevState) {
+        const currentMessage = this.state.messages
+        const lastMessage = currentMessage[currentMessage.length - 1]
+        if (prevState.messages.length < this.state.messages.length && lastMessage.name === 'Me') {
+            setTimeout(() => {
+                this.setState(state => ({
+                    ...state,
+                    messages: [...this.state.messages, { name: 'Bot', text: 'I am Bot what can I help you?' }]
+                }))
+            }, 1000)
+        }
     }
 
     render() {
-        let { messages } = this.props;
-        let messageElements = Object.keys(messages).map((id) => (
-            <Message key={id} text={messages[id].text} sender={messages[id].sender} />
-        )
-        );
+        const Messages = this.state.messages.map((item, index) => <Message key={index} message={item} />)
+        return (
+            <section className="chat container">
+                <div className="message-list">
+                    {Messages}
+                </div>
+                <div className="chat-footer">
+                    <TextField
+                        autoFocus
+                        fullWidth
+                        size="small"
+                        label="введи текст"
+                        variant="outlined"
+                        value={this.state.input}
+                        onChange={this.handleChange}
+                        onKeyUp={(event) => this.handleKeyUp(event, this.state.input)} />
 
-        return <div>
-            {messageElements}
-            <input
-                type="text"
-                onChange={this.handleChange}
-            />
-            <Button variant="contained" color="primary"
-                onClick={this.handleSend}
-            >Send the message</Button>
-        </div>
+                    <IconButton
+                        color="primary"
+                        onClick={() => this.handleClick(this.state.input)}>
+                        <SendIcon />
+                    </IconButton>
+                </div>
+            </section>
+        )
     }
 }
 
