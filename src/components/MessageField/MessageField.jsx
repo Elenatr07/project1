@@ -3,6 +3,7 @@ import Message from '../Message/Message.jsx';
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
 import { sendMessage } from '../../store/actions/msg_action.js';
+import { Button } from '@material-ui/core'
 
 
 class MessageField extends Component {
@@ -42,9 +43,9 @@ class MessageField extends Component {
                 type="text"
                 onChange={this.handleChange}
             />
-            <button
+            <Button variant="contained" color="primary"
                 onClick={this.handleSend}
-            >Send the message</button>
+            >Send the message</Button>
         </div>
     }
 }
