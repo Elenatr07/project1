@@ -7,7 +7,7 @@ export default class Router extends Component {
     render() {
         return (
             <Switch>
-                <Route path='/' component={Layout} exact /> {/*только для http://localhost:3000/*/}
+                <Route path='/' component={Layout} exact />
                 <Route path='/chat/1/' render={() => <Layout chatId={'1'} />} />
                 <Route path='/chat/2/' render={() => <Layout chatId={'2'} />} />
             </Switch>
