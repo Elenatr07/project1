@@ -7,6 +7,7 @@ import ChatList from "../ChatList/ChatList.jsx";
 import Header from "../Header/Header.jsx";
 
 
+
 class Layout extends React.Component {
     static propTypes = {
         chatId: PropTypes.number,
