@@ -69,7 +69,7 @@ class MessageField extends React.Component {
                 />
                 <FloatingActionButton
 
-                    onClick={() => this.handleSendMessage(this.props.chatId, this.state.input, "'mr7282'")}>
+                    onClick={() => this.handleSendMessage(this.props.chatId, this.state.input, "'Elena'")}>
                     <SendIcon
                     />
                 </FloatingActionButton>
