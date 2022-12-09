@@ -1,94 +1,59 @@
 import React, { Component } from 'react';
 import Message from '../Message/Message.jsx';
+
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
-import { sendMessage } from '../../store/actions/msg_action.js';
-import { Button, Paper, IconButton, TextField } from '@material-ui/core';
-import SendIcon from '@material-ui/icons/SendRounded'
-
+import { sendMessage } from '../../store/actions/msg_action';
 
 class MessageField extends Component {
     state = {
-        input: '',
-        messages: []
+        text: '',
+        answered: true
     };
 
-    handleSend = (value) => {
-        this.setState(state => ({
-            ...state,
-            messages: [...this.state.messages, { name: 'Me', text: value }]
-        }))
-        this.setState({ input: '' })
-
-        // let { text } = this.state;
-        // let id = Object.keys(this.props.messages).length + 1;
-        //this.props.sendMessage(id, 'Me', text);
+    handleSend = () => {
+        let { text } = this.state;
+        let id = Object.keys(this.props.messages).length + 1;
+        this.props.sendMessage(id, 'Me', text);
     };
-
-    handleClick = (value) => {
-        if (this.state.input !== '') {
-            this.handleSend(value)
-        }
-    }
-
-    handleKeyUp = (evt) => {
-        if (this.state.input !== '') {
-            if (evt.reyCode === 13) {
-                this.handleSend(this.state.input)
-            }
-        }
-    }
 
     handleChange = evt => {
-        this.setState({ input: evt.target.value });
-
+        if (evt.keyCode != 13) {
+            this.setState({ text: evt.target.value });
+        } else {
+            this.handleSend();
+        }
     };
 
-    componentDidUpdate(prevProps, prevState) {
-        const currentMessage = this.state.messages
-        const lastMessage = currentMessage[currentMessage.length - 1]
-        if (prevState.messages.length < this.state.messages.length && lastMessage.name === 'Me') {
-            setTimeout(() => {
-                this.setState(state => ({
-                    ...state,
-                    messages: [...this.state.messages, { name: 'Bot', text: 'I am Bot what can I help you?' }]
-                }))
-            }, 1000)
-        }
+    componentDidUpdate() {
+        if (!this.state.answered) this.sendMessage('Отстань', 'Bot');
     }
 
     render() {
-        const Messages = this.state.messages.map((item, index) => <Message key={index} message={item} />)
-        return (
-            <section className="chat container">
-                <div className="message-list">
-                    {Messages}
-                </div>
-                <div className="chat-footer">
-                    <TextField
-                        autoFocus
-                        fullWidth
-                        size="small"
-                        label="введи текст"
-                        variant="outlined"
-                        value={this.state.input}
-                        onChange={this.handleChange}
-                        onKeyUp={(event) => this.handleKeyUp(event, this.state.input)} />
 
-                    <IconButton
-                        color="primary"
-                        onClick={() => this.handleClick(this.state.input)}>
-                        <SendIcon />
-                    </IconButton>
-                </div>
-            </section>
+        let { messages } = this.props;
+        let messageElements = Object.keys(messages).map((id) => (
+            <Message key={id} text={messages[id].text} sender={messages[id].sender} />
         )
+        );
+
+        return <div>
+            {messageElements}
+            <input
+                type="text"
+                onChange={this.handleChange}
+            />
+            <button
+                onClick={this.handleSend}
+            >Отправить сообщение</button>
+        </div>
     }
 }
 
-const mapStateProps = ({ msg_reducer }) => ({
+const mapStateToProps = ({ msg_reducer }) => ({
     messages: msg_reducer.messages
 })
 
-const mapDispatchProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
-export default connect(mapStateProps, mapDispatchProps)(MessageField);
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
