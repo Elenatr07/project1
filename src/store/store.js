@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { legacy_createStore as createStore } from 'redux';
 import initReducers from './reducers';
 
 export default function initStore() {
