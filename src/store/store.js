@@ -1,8 +1,11 @@
 import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux';
-import initReducers from './reducers';
+import initReducers from '../reducers';
 import middlewares from '../middlewares';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 
 const persistConfig = {

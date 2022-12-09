@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
-import MessageField from "../MessageField/MessageField.jsx";
-import ChatList from "../ChatList/ChatList.jsx";
-import Header from "../Header/Header.jsx";
-
+import MessageField from "../MessageField/MessageField";
+import ChatList from "../ChatList/ChatList";
+import Header from "../Header/Header";
+import "./style.css";
 
 class Layout extends React.Component {
     static propTypes = {
@@ -22,16 +22,16 @@ class Layout extends React.Component {
 
     render() {
         return <div className="main">
-            <Header chatId={this.props.chatId} />
-            <div className="content">
-                <ChatList chatId={this.props.chatId} />
-                <MessageField chatId={this.props.chatId} />
+                    <Header chatId={ this.props.chatId }/>
+                    <div className="content">
+                        <ChatList chatId={ this.props.chatId }/>
+                        <MessageField chatId={ this.props.chatId }/>
+                    </div>
             </div>
-        </div>
     }
 }
 
-const mapStateToProps = ({ }) => ({});
+const mapStateToProps = ({}) => ({});
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 

@@ -1,94 +1,86 @@
-import React, { Component } from 'react';
+import React from "react";
+import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import connect from "react-redux/es/connect/connect";
+import { TextField } from "@material-ui/core";
+//import SendIcon from "material-ui/svg-icons/content/send";
 import Message from '../Message/Message.jsx';
-import connect from 'react-redux/es/connect/connect';
-import { bindActionCreators } from 'redux';
-import { sendMessage } from '../../store/actions/msg_action.js';
-import { Button, Paper, IconButton, TextField } from '@material-ui/core';
-import SendIcon from '@material-ui/icons/SendRounded'
+import { sendMessage } from "../../Actions/messageActions";
+import Button from '@material-ui/core/Button';
 
 
-class MessageField extends Component {
+class MessageField extends React.Component {
+    static propTypes = {
+        messages: PropTypes.object.isRequired,
+        chatId: PropTypes.number.isRequired,
+    };
+
     state = {
         input: '',
-        messages: []
     };
 
-    handleSend = (value) => {
-        this.setState(state => ({
-            ...state,
-            messages: [...this.state.messages, { name: 'Me', text: value }]
-        }))
-        this.setState({ input: '' })
 
-        // let { text } = this.state;
-        // let id = Object.keys(this.props.messages).length + 1;
-        //this.props.sendMessage(id, 'Me', text);
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     };
 
-    handleClick = (value) => {
-        if (this.state.input !== '') {
-            this.handleSend(value)
+    handleKeyUP = (event) => {
+        if (event.keyCode === 13) {
+            this.handleSendMessage(this.props.chatId, this.state.input, "'mr7282'")
         }
-    }
-
-    handleKeyUp = (evt) => {
-        if (this.state.input !== '') {
-            if (evt.reyCode === 13) {
-                this.handleSend(this.state.input)
-            }
-        }
-    }
-
-    handleChange = evt => {
-        this.setState({ input: evt.target.value });
-
     };
 
-    componentDidUpdate(prevProps, prevState) {
-        const currentMessage = this.state.messages
-        const lastMessage = currentMessage[currentMessage.length - 1]
-        if (prevState.messages.length < this.state.messages.length && lastMessage.name === 'Me') {
-            setTimeout(() => {
-                this.setState(state => ({
-                    ...state,
-                    messages: [...this.state.messages, { name: 'Bot', text: 'I am Bot what can I help you?' }]
-                }))
-            }, 1000)
+
+    handleSendMessage = (chatId, text, author) => {
+        if (this.state.input.length > 0 || author === "'robot'") {
+            this.props.sendMessage(chatId, text, author);
         }
-    }
+
+        if (author === "'mr7282'") {
+            this.setState({ input: "" })
+        }
+    };
 
     render() {
-        const Messages = this.state.messages.map((item, index) => <Message key={index} message={item} />)
-        return (
-            <section className="chat container">
-                <div className="message-list">
-                    {Messages}
-                </div>
-                <div className="chat-footer">
-                    <TextField
-                        autoFocus
-                        fullWidth
-                        size="small"
-                        label="введи текст"
-                        variant="outlined"
-                        value={this.state.input}
-                        onChange={this.handleChange}
-                        onKeyUp={(event) => this.handleKeyUp(event, this.state.input)} />
+        const { messages } = this.props;
+        const { chats } = this.props;
+        const messagesArr = chats[this.props.chatId].messageList;
 
-                    <IconButton
-                        color="primary"
-                        onClick={() => this.handleClick(this.state.input)}>
-                        <SendIcon />
-                    </IconButton>
-                </div>
-            </section>
-        )
+        const messageElements = messagesArr.map(messageId => (
+            <Message
+                key={messageId}
+                text={messages[messageId].text}
+                author={messages[messageId].author}
+            />));
+
+        return <div>
+            <div key="messageElements" id="name" className="message-field">
+                {messageElements}
+            </div>
+            <div key='textInput' style={{ width: '100%', display: 'flex' }} >
+                <TextField
+                    name="input"
+                    fullWidth={true}
+                    hintText="Введите сообщение"
+                    style={{ fontSize: '22px' }}
+                    onChange={this.handleChange}
+                    value={this.state.input}
+                    onKeyUp={this.handleKeyUP}
+                />
+                <Button onClick={() => this.handleSendMessage(this.props.chatId, this.state.input, "'mr7282'")}>
+                    send message
+                </Button>
+            </div>
+
+        </div>
     }
 }
 
-const mapStateProps = ({ msg_reducer }) => ({
-    messages: msg_reducer.messages
-})
+const mapStateToProps = ({ messageReducer }) => ({
+    messages: messageReducer.messages,
+    chats: messageReducer.chats,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
-export default connect(mapStateProps, mapDispatchToProps)(MessageField);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);

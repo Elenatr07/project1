@@ -1,3 +1,5 @@
-import bot from './botMD.js';
+import messageMiddleware from './messageMiddleware';
 
-export default [bot]
+export default [
+   messageMiddleware,
+];

@@ -1,13 +1,14 @@
 import React from 'react';
-import { bindActionCreators } from "redux";
+import {bindActionCreators} from "redux";
 import connect from "react-redux/es/connect/connect";
 import { Link } from 'react-router-dom'
-import { List, ListItem } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-//import AddIcon from 'material-ui/svg-icons/content/add';
+import { List, ListItem } from 'material-ui/List';
+import { TextField } from 'material-ui';
+import AddIcon from 'material-ui/svg-icons/content/add';
 import PropTypes from "prop-types";
 import { push } from "connected-react-router";
-import { addChat } from "../../Actions/chat_action.js"
+import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import { addChat } from "../../Actions/chatActions";
 
 class ChatList extends React.Component {
     static propTypes = {
@@ -44,28 +45,31 @@ class ChatList extends React.Component {
     render() {
         const { chats } = this.props;
         const chatElements = Object.keys(chats).map(chatId => (
-            <ListItem
-                onClick={() => this.hendleNavigate(`/chat/${chatId}`)}
-                primaryText={chats[chatId].title}
-            // rightIcon={<CommunicationChatBubble />}
-            />
+                    <ListItem
+                    onClick={ () => this.hendleNavigate(`/chat/${chatId}`)}
+                    primaryText={ chats[chatId].title}
+                    // rightIcon={<CommunicationChatBubble />}
+                    />
         ));
 
         return (
             <List>
-                {chatElements}
+                { chatElements }
                 <ListItem
-                    key="Add new chat"
-                    // leftIcon={<AddIcon />}
-                    onClick={this.handleAddChat}
-                    style={{ height: '60px' }}
-                    children={<TextField
-                        id="standard-basic" label="Text of you message"
-                        onChange={this.handleChange}
-                        value={this.state.input}
-                        onKeyUp={this.handleKeyUp}
-                    />}
-                />
+                   key="Add new chat"
+                   leftIcon={ <AddIcon /> }
+                   onClick={ this.handleAddChat }
+                   style={ { height: '60px' } }
+                   children= {<TextField
+                       key="textField"
+                       fullWidth
+                       name="input"
+                       hintText="Добавить новый чат"
+                       onChange={ this.handleChange }
+                       value={ this.state.input }
+                       onKeyUp={ this.handleKeyUp }
+                   />}
+               />
             </List>
         )
     }
@@ -79,4 +83,4 @@ const mapStateToProps = ({ messageReducer }) => ({
 const mapDispatchToProps = dispatch => bindActionCreators({ addChat, push },
     dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
+export default connect(mapStateToProps, mapDispatchToProps) (ChatList);
