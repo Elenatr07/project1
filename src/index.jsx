@@ -7,6 +7,7 @@ import Router from './router.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import initStore from './store/store.js';
+import { ConnectedRouter, connectRouter } from 'connected-react-router';
 
 const appContainer = document.querySelector('#app');
 
