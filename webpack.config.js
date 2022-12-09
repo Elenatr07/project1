@@ -2,12 +2,18 @@ const path = require('path');
 const MiniCss = require('mini-css-extract-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
     entry: {
-        //точка входа
         main: path.resolve(__dirname, 'src', 'index.jsx')
     },
+   
+    resolve: {
+        modules: [ `${__dirname}/src/components`, 'node_modules'],
+        extensions: ['.js', '.jsx'],
+    },
+    
+    devtool: 'cheap-inline-module-source-map',
+    
     module: {
         rules: [
             {
@@ -27,17 +33,25 @@ module.exports = {
     },
     plugins: [
         new MiniCss({
-            filename: path.join('style', '[name].css'),
+            fileName: path.join('style', '[name].css'),
             chunkFilename: '[id].css'
         }),
         new HtmlPlugin({
-            filename: 'index.html',
+            fileName: 'index.html',
             template: path.resolve(__dirname, 'public', 'index.html')
         })
     ],
     devServer: {
-        port: 3000,
+        port: 8080,
         // hot: true,
-        open: false
+        open: false,        
+        proxy: {
+            "/api": {
+                target: "http://localhost:3000/",
+                pathRewrite: { "^/api": "" },
+                secure: false,
+                changeOrigin: true
+            }
+        }
     }
 }

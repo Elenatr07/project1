@@ -1,18 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
-
-//import SendIcon from "material-ui/svg-icons/content/send"
-
-
+import "./style.css"
 
 export default class Message extends React.Component {
     static propTypes = {
-        messages: PropTypes.object.isRequired,
+        text: PropTypes.string.isRequired,
         author: PropTypes.string.isRequired,
     };
-
-
 
     render() {
         return <div
@@ -29,4 +23,3 @@ export default class Message extends React.Component {
         </div>
     }
 }
-
