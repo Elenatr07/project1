@@ -14,11 +14,11 @@ const appContainer = document.querySelector('#app');
 
 ReactDom.render(
     <Provider store={initStore()}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <div className="h-100">
                 <Router />
             </div>
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>,
     appContainer
 )
