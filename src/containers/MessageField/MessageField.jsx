@@ -26,17 +26,17 @@ class MessageField extends React.Component {
 
     handleKeyUP = (event) => {
         if (event.keyCode === 13) {
-            this.handleSendMessage(this.props.chatId, this.state.input, "'mr7282'")
+            this.handleSendMessage(this.props.chatId, this.state.input, "'Elena'")
         }
     };
 
 
     handleSendMessage = (chatId, text, author) => {
-        if (this.state.input.length > 0 || author === "'robot'") {
+        if (this.state.input.length > 0 || author === "'Bot'") {
             this.props.sendMessage(chatId, text, author);
         }
 
-        if (author === "'mr7282'") {
+        if (author === "'Elena'") {
             this.setState({ input: "" })
         }
     };

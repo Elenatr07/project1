@@ -12,9 +12,9 @@ export default class Message extends React.Component {
         return <div
             className="message"
             style={{
-                alignSelf: this.props.author === "'robot'" ?
+                alignSelf: this.props.author === "'Bot'" ?
                     "flex-start" : "flex-end",
-                backgroundColor: this.props.author === "'robot'" ?
+                backgroundColor: this.props.author === "'Bot'" ?
                     "rgb(255, 255, 255)" : "rgb(210, 233, 243)"
             }}
         >

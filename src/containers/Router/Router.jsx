@@ -7,16 +7,15 @@ export default class Router extends React.Component {
     render() {
         return (
             <Switch>
-                <Route exact={ true } path="/" component={ Layout } />
-                <Route exact path="/profile/" render={ () => <Profile /> } />
+                <Route exact={true} path="/" component={Layout} />
                 <Route
                     exact
                     path="/chat/:chatId/"
-                    render={ obj => <Layout
-                        chatId={ Number(obj.match.params.chatId) }
-                        />
-                        }
+                    render={obj => <Layout
+                        chatId={Number(obj.match.params.chatId)}
                     />
+                    }
+                />
             </Switch>
         )
     }
