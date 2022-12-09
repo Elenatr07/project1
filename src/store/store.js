@@ -3,6 +3,7 @@ import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux';
 import initReducers from './reducers';
 import middlewares from '../middlewares';
+import {persistStore, persistReducer} from 'red'
 
 
 const persistConfig = {
