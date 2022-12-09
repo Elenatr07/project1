@@ -1,8 +1,8 @@
 .root {
     color: brown;
     text-decoration: none;
-  }
+}
 
-  .root:hover {
-      color: brown;
-  }
+.root:hover {
+    color: brown;
+}

@@ -5,6 +5,8 @@ import connect from "react-redux/es/connect/connect";
 import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import styles from './style.css';
+import Menu from '../Menu/Menu'
+
 
 class Header extends React.Component {
     static propTypes = {
@@ -14,11 +16,14 @@ class Header extends React.Component {
 
     render() {
         const { chats, chatId } = this.props;
-        return <div>
+        return <div >
+            <Menu />
             <AppBar
                 title={chats[chatId].title}
-                iconClassNameRight="muidocs-icon-navigation-expand-more"
             />
+
+
+
         </div>
     }
 }
