@@ -1,4 +1,6 @@
+
 import { createStore, compose, applyMiddleware } from 'redux';
+
 import initReducers from './reducers';
 import middlewares from '../middlewares';
 import { createBrowserHistory } from 'history';

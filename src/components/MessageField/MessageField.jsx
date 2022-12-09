@@ -56,4 +56,6 @@ const mapStateToProps = ({ msg_reducer }) => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
+
