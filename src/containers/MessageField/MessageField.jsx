@@ -67,8 +67,11 @@ class MessageField extends React.Component {
                     value={this.state.input}
                     onKeyUp={this.handleKeyUP}
                 />
-                <FloatingActionButton onClick={() => this.handleSendMessage(this.props.chatId, this.state.input, "'mr7282'")}>
-                    <SendIcon />
+                <FloatingActionButton
+
+                    onClick={() => this.handleSendMessage(this.props.chatId, this.state.input, "'mr7282'")}>
+                    <SendIcon
+                    />
                 </FloatingActionButton>
             </div>
 
