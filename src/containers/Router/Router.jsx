@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Layout from "../Layout/Layout"
 import Profile from "../Profile/Profile"
 
+
 export default class Router extends React.Component {
     render() {
         return (
