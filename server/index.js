@@ -11,7 +11,8 @@ server.use('/', express.static('dist')); //для запуска после фи
 server.get("/chat/:id", (req, res) => {
     let data = fs.readFile(`./server/db/chat_${req.params.id}.json`, "utf-8", (err, data) => {
         if (!err) {
-            res.send(data)
+            data = JSON.parse(data);
+            res.json(data);
         }
     })
 });
