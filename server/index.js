@@ -16,5 +16,18 @@ server.get("/chat/:id", (req, res) => {
         }
     })
 });
+server.post('/chat/:id', (req, res) => {
+    let data = fs.readFile(`./server/db/chat_${req.params.id}.json`, "utf-8", (err, data) => {
+        if (!err) {
+            data = JSON.parse(data);
+            data[req.body.messageId] = { author: req.body.author, text: req.body.text };
+            fs.writeFile(`./server/db/chat_${req.params.id}.json`, JSON.stringify(data, null, ' '), err => {
+                if (!err) {
+                    res.json({ status: true });
+                }
+            })
+        }
+    })
+})
 
 server.listen(3000, () => { console.log('Server port 3000...') })
