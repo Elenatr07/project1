@@ -5,7 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import { TextField, FloatingActionButton } from "material-ui"
 import SendIcon from "material-ui/svg-icons/content/send"
 import Message from "../../components/Message";
-import { sendMessage } from "../../Actions/messageActions";
+import { sendMessage, loadMessages } from "../../Actions/messageActions";
 import "./style.css";
 
 
@@ -23,6 +23,11 @@ class MessageField extends React.Component {
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     };
+
+    componentDidMount() {
+        this.props.loadMessages(this.props.chatId);
+
+    }
 
     handleKeyUP = (event) => {
         if (event.keyCode === 13) {
@@ -43,10 +48,10 @@ class MessageField extends React.Component {
 
     render() {
         const { messages } = this.props;
-        const { chats } = this.props;
-        const messagesArr = chats[this.props.chatId].messageList;
+        //const { chats } = this.props;
+        //const messagesArr = chats[this.props.chatId].messageList;
 
-        const messageElements = messagesArr.map(messageId => (
+        let messageElements = Object.keys(messages).map((messageId) => (
             <Message
                 key={messageId}
                 text={messages[messageId].text}
@@ -84,6 +89,6 @@ const mapStateToProps = ({ messageReducer }) => ({
     chats: messageReducer.chats,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage, loadMessages }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
