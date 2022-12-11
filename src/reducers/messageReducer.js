@@ -9,7 +9,7 @@ const initialStore = {
         2: { title: "Chat 2", messageList: [2] },
         3: { title: "Chat 3", messageList: [3] },
         4: { title: "Chat 4", messageList: [4] },
-        5: { title: "Chat 4", messageList: [1] },
+        5: { title: "Chat 5", messageList: [5] },
     },
     messages: {
         // 1: { text: " Hello I am Bot!", author: "'Bot'" },
