@@ -6,7 +6,7 @@ const server = express();
 //server.get('/', (reg, res) => {
 //    res.send("Hello server");
 //})
-
+server.use(express.json());
 server.use('/', express.static('dist')); //для запуска после финальной сборки
 server.get("/chat/:id", (req, res) => {
     let data = fs.readFile(`./server/db/chat_${req.params.id}.json`, "utf-8", (err, data) => {

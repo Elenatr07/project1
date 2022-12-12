@@ -4,13 +4,13 @@ import { ADD_CHAT } from "../Actions/chatActions"
 import { UpdateTwoTone } from "@material-ui/icons";
 
 const initialStore = {
-    chats: {
-        1: { title: "Chat 1", messageList: [1, 2] },
-        2: { title: "Chat 2", messageList: [2] },
-        3: { title: "Chat 3", messageList: [3] },
-        4: { title: "Chat 4", messageList: [] },
-        5: { title: "Chat 5", messageList: [] },
-    },
+    // chats: {
+    //     1: { title: "Chat 1", messageList: [] },
+    //     2: { title: "Chat 2", messageList: [] },
+    //     3: { title: "Chat 3", messageList: [] },
+    //     4: { title: "Chat 4", messageList: [] },
+    //     5: { title: "Chat 5", messageList: [] },
+    //  },
     messages: {
         // 1: { text: " Hello I am Bot!", author: "'Bot'" },
         // 2: { text: " What can I help you?", author: "'Bot'" },
@@ -53,7 +53,7 @@ export default function messageReducer(store = initialStore, action) {
         case SUCCESS_LOAD_MESSAGES: {
             console.log(action.payload)
             return update(store, {
-                messages: { $set: action.payload }
+                messages: { $push: action.payload }
             });
         }
         default:
