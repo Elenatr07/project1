@@ -11,7 +11,7 @@ import Menu from '../Menu/Menu'
 class Header extends React.Component {
     static propTypes = {
         chatId: PropTypes.number.isRequired,
-        chats: PropTypes.object.isRequired,
+        //chats: PropTypes.object.isRequired,
     };
 
     render() {
