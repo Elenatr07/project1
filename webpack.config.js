@@ -6,14 +6,14 @@ module.exports = {
     entry: {
         main: path.resolve(__dirname, 'src', 'index.jsx')
     },
-   
+
     resolve: {
-        modules: [ `${__dirname}/src/components`, 'node_modules'],
+        modules: [`${__dirname}/src/components`, 'node_modules'],
         extensions: ['.js', '.jsx'],
     },
-    
+
     devtool: 'cheap-inline-module-source-map',
-    
+
     module: {
         rules: [
             {
@@ -21,7 +21,7 @@ module.exports = {
                 loader: 'babel-loader',
                 options: {
                     plugins: [
-                        ["@babel/plugin-proposal-class-properties", {"loose": true}]
+                        ["@babel/plugin-proposal-class-properties", { "loose": true }]
                     ]
                 }
             },
@@ -42,9 +42,9 @@ module.exports = {
         })
     ],
     devServer: {
-        port: 8080,
+        port: 8000,
         // hot: true,
-        open: false,        
+        open: false,
         proxy: {
             "/api": {
                 target: "http://localhost:3000/",
