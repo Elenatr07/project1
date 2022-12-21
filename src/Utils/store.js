@@ -14,15 +14,15 @@ const persistConfig = {
     whitelist: ["messageReducer"],
 };
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
 function initStore() {
 
-    const store =  createStore(
+    const store = createStore(
         persistReducer(persistConfig, initReducers(history)),
         compose(
             applyMiddleware(routerMiddleware(history), ...middlewares),
-                 window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {},
+            window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => { },
         ),
     );
 
