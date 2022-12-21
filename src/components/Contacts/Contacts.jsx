@@ -2,6 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button } from '@material-ui/core';
+import Popover from '@material-ui/core/Popover';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 
 function rand() {
@@ -46,11 +50,32 @@ export default function SimpleModal() {
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
-            <h2 id="simple-modal-title">Text in a modal</h2>
-            <p id="simple-modal-description">
-                Выберете из списка контактов
-            </p>
-            <SimpleModal />
+            <h2 id="simple-modal-title">To start a new chat, select the interlocutor from the contact list.</h2>
+            <PopupState variant="popover" popupId="demo-popup-popover">
+                {(popupState) => (
+                    <div>
+                        <Button variant="contained" color="primary" {...bindTrigger(popupState)}>
+                            Contacts
+                        </Button>
+                        <Popover
+                            {...bindPopover(popupState)}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center',
+                            }}
+                        >
+                            <Box p={2}>
+                                <Typography>Contact list  is empty.</Typography>
+                            </Box>
+                        </Popover>
+                    </div>
+                )}
+            </PopupState>
+
         </div>
     );
 

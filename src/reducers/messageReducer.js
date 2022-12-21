@@ -12,8 +12,8 @@ const initialStore = {
         5: { title: "Chat 5", messageList: [] },
     },
     messages: {
-        // 1: { text: " Hello I am Bot!", author: "'Bot'" },
-        // 2: { text: " What can I help you?", author: "'Bot'" },
+        //1: { text: " Hello I am Bot!", author: "'Bot'" },
+        //2: { text: " What can I help you?", author: "'Bot'" },
         // 3: { text: "Hello", author: "'Bot'" },
         // 4: { text: "What do you want to talk about?", author: "'Bot'" }
     },
