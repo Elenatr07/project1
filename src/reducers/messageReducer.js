@@ -8,7 +8,7 @@ const initialStore = {
         2: { title: "Chat 2", messageList: [2] },
         3: { title: "Chat 3", messageList: [] },
         4: { title: "Chat 4", messageList: [] },
-        5: { title: "Chat 4", messageList: [] },
+        5: { title: "Chat 5", messageList: [] },
     },
     messages: {
         1: { text: " Hello I am Bot!", author: "'Bot'" },
