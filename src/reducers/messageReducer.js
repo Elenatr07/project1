@@ -4,15 +4,15 @@ import { ADD_CHAT } from "../Actions/chatActions"
 import { UpdateTwoTone } from "@material-ui/icons";
 
 const initialStore = {
-    // chats: {
-    //     1: { title: "Chat 1", messageList: [] },
-    //     2: { title: "Chat 2", messageList: [] },
-    //     3: { title: "Chat 3", messageList: [] },
-    //     4: { title: "Chat 4", messageList: [] },
-    //     5: { title: "Chat 5", messageList: [] },
-    //  },
+    chats: {
+        1: { title: "Chat 1", messageList: [1] },
+        2: { title: "Chat 2", messageList: [] },
+        3: { title: "Chat 3", messageList: [] },
+        4: { title: "Chat 4", messageList: [] },
+        5: { title: "Chat 5", messageList: [] },
+    },
     messages: {
-        // 1: { text: " Hello I am Bot!", author: "'Bot'" },
+        1: { text: " Hello I am Bot!", author: "'Bot'" },
         // 2: { text: " What can I help you?", author: "'Bot'" },
         // 3: { text: "Hello", author: "'Bot'" },
         // 4: { text: "What do you want to talk about?", author: "'Bot'" }
