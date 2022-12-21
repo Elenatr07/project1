@@ -9,6 +9,7 @@ export default class Router extends React.Component {
         return (
             <Switch>
                 <Route exact={true} path="/" component={Layout} />
+                <Route exact path="/profile/" render={() => <Profile />} />
                 <Route
                     exact
                     path="/chat/:chatId/"
